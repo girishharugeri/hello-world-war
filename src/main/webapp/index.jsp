@@ -4,11 +4,11 @@
 </head>
 <body>
 	<h1>Please select the following categories!</h1>
-	<h2>1.Drama</h2>
-	<h2>2.Vengful</h2>
-	<h2>3.Horror</h2>
-	<h2>4.Anime</h2>
-	<h2>5.Comedy</h2>
+	<h2>1.Girish</h2>
+	<h2>2.Rama</h2>
+	<h2>3.Sita</h2>
+	<h2>4.Lakshmana</h2>
+	<h2>5.Vasudeva</h2>
 	<p>
 		It is now
 		<%= new java.util.Date() %></p>
