@@ -5,7 +5,7 @@
 <body>
 	<h1>Girish here, please know more about me..!</h1>
 	<h2>At present I'm doing Devops course</h2>
-	<h2>In course learning Linux,Shell scripting,Git,Maven..</h2>
+	<h2>course includes learning: Linux,Shell scripting,Git,Maven..</h2>
 	<h2></h2>
 	<h2></h2>
 	<h2></h2>
