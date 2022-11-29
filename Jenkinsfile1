@@ -8,7 +8,7 @@ pipeline {
           sh 'ls'
           sh 'pwd'
           sh 'mvn package'
-          sh 'scp -r target/hello-world-war-1.0.0 slavejenkins@172.31.12.7:/home/slavejenkins/workspace'
+          sh 'scp -r /var/lib/jenkins/workspace/4th_pipeline_work/target/hello-world-war-1.0.0 slavejenkins@172.31.12.7:/home/slavejenkins/workspace'
        }
      }  
           stage ( 'my deploy' ) {
