@@ -8,7 +8,7 @@ pipeline {
           sh 'ls'
           sh 'pwd'
           sh 'mvn package'
-          sh 'scp -R /target/hello-world-war-1.0.0 slavejenkins@172.31.12.7:/opt/apache-tomcat-10.0.27/webapps'
+          sh 'scp -R /target/hello-world-war-1.0.0 root@172.31.12.7:/opt/apache-tomcat-10.0.27/webapps'
        }
      }  
           stage ( 'my deploy' ) {
