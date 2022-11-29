@@ -12,8 +12,10 @@
 	<h3>4.Maven</h3>
 	<h3>apache-tomcat</h3>
 	<h3>5.Jenkins</h3>
-	<h3>5.Jenkins jobs</h3>
-	<h3>5.Jenkins jobs again</h3>
+	<h3>6.Jenkins jobs</h3>
+	<h3>7.Jenkins jobs again</h3>
+	<h3>7.Jenkins jobs freestyle</h3>
+	<h3>8.Jenkins jobs pipeline</h3>
 	<p>
 		It is now
 		<%= new java.util.Date() %></p>
