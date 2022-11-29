@@ -8,7 +8,7 @@ pipeline {
           sh 'ls'
           sh 'pwd'
           sh 'mvn package'
-          sh 'sudo scp -r target/hello-world-war-1.0.0.war ubuntu@172.31.12.7:/home/ubuntu'
+          sh 'scp -r target/hello-world-war-1.0.0.war ubuntu@172.31.12.7:/home/ubuntu'
        }
      }  
           stage ( 'my deploy' ) {
