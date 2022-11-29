@@ -8,13 +8,12 @@ pipeline {
           sh 'ls'
           sh 'pwd'
           sh 'mvn package'
-          sh 'scp -r /var/lib/jenkins/workspace/4th_pipeline_work/target/hello-world-war-1.0.0 slavejenkins@172.31.12.7:/home/slavejenkins/workspace'
+          sh 'scp -R /target/hello-world-war-1.0.0.war slavejenkins@172.31.12.7:/opt/apache-tomcat-10.0.27/webapps'
        }
      }  
           stage ( 'my deploy' ) {
             agent { label 'slave_jenkins' }
-              steps {
-                sh 'sudo cp -r /home/slavejenkins/workspace/hello-world-war-1.0.0 /opt/apache-tomcat-10.0.27/webapps'
+              steps { 
                 sh 'sudo tomcatdown'
                 sh 'sudo tomcatup'
       }   
