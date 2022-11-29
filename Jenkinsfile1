@@ -1,0 +1,24 @@
+pipeline {
+  agent none
+  stages {
+    stage ( 'my build' ) {
+      agent { label 'master' }
+      steps {
+          sh 'whoami'
+          sh 'ls'
+          sh 'pwd'
+          sh 'df -h .'
+          sh 'sudo mvn package'
+          sh 'sudo scp -r target/hello-world-war-1.0.0.war ubuntu@172.31.12.7:/home/ubuntu
+       }
+     }  
+          stage ( 'my deploy' ) {
+            agent { label 'slave_jenkins' }
+              steps {
+                sh 'sudo mv hello-world-war-1.0.0.war /opt/apache-tomcat-10.0.27/webapps
+                sh 'sudo tomcatdown'
+                sh 'sudo tomcatup'
+      }   
+    }
+  }
+}
