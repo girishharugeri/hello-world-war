@@ -8,6 +8,10 @@ pipeline {
           sh 'pwd'
           sh 'df -h .'
           sh 'sudo mvn package'
+      }
+    }
+    stage ( 'my deploy' ) {
+      steps {
           sh 'sudo cp -r target/hello-world-war-1.0.0.war /opt/apache-tomcat-10.0.27/webapps'
           sh 'sudo tomcatdown'
           sh 'sudo tomcatup'
