@@ -2,12 +2,12 @@ pipeline {
   agent none
   stages {
     stage ( 'my build' ) {
-      agent { label 'slave_devops' }
+      agent { label 'slavedevops' }
       steps {
-          sh 'whoami'
           sh 'ls'
           sh 'pwd'
           sh 'mvn package'
+          sh 'whoami'
           sh 'scp -R target/hello-world-war-1.0.0 slavejenkins@172.31.12.7:/opt/apache-tomcat-10.0.27/webapps'
        }
      }  
