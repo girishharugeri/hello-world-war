@@ -14,10 +14,11 @@
 	<h3>5.Jenkins</h3>
 	<h3>6.Jenkins jobs</h3>
 	<h3>7.Jenkins jobs again</h3>
-	<h3>7.Jenkins jobs freestyle</h3>
-	<h3>8.Jenkins jobs pipeline</h3>
-	<h3>9.Jenkins jobs pipeline and webhook testing</h3>
-	<h3>9.Jenkins jobs pipeline and webhook testing and passwordless</h3>
+	<h3>8.Jenkins jobs freestyle</h3>
+	<h3>9.Jenkins jobs pipeline</h3>
+	<h3>10.Jenkins jobs pipeline and webhook testing</h3>
+	<h3>11.Jenkins jobs pipeline and webhook testing and passwordless</h3>
+	<h3>12.jenkins pipeline between 2 server passwordless</h3>
 	<p>
 		It is now
 		<%= new java.util.Date() %></p>
