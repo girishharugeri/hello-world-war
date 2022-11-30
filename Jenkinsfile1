@@ -13,7 +13,8 @@ pipeline {
      }  
           stage ( 'my deploy' ) {
             agent { label 'slave_jenkins' }
-              steps { 
+              steps {
+                sh 'whoami'
                 sh 'sudo tomcatdown'
                 sh 'sudo tomcatup'
       }   
