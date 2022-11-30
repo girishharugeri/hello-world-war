@@ -2,7 +2,7 @@ pipeline {
   agent none
   stages {
     stage ( 'my build' ) {
-      agent { label 'slavedevops' }
+      agent { label 'slave_devops' }
       steps {
           sh 'ls'
           sh 'pwd'
