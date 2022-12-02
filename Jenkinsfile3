@@ -13,6 +13,7 @@ pipeline {
           stage ( 'my deploy' ) {
             agent { label 'slave_git' }
               steps {
+                sh 'pwd'
                 sh 'whoami'
                 sh 'curl -u harugeri.girish@gmail.com:Raibag@74 -O https://jfrogiri.jfrog.io/artifactory/libs-release-local/com/efsavage/hello-world-war/${BUILD_NUMBER}/hello-world-war-${BUILD_NUMBER}.war'
                 sh 'sudo cp -R hello-world-war-${BUILD_NUMBER}.war /opt/apache-tomcat-10.0.27/webapps/'
