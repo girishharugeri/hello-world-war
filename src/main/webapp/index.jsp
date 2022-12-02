@@ -19,6 +19,7 @@
 	<h3>10.Jenkins jobs pipeline and webhook testing</h3>
 	<h3>11.Jenkins jobs pipeline and webhook testing and passwordless</h3>
 	<h3>12.Jenkins jobs pipeline between 2 servers passwordless i.e scp</h3>
+	<h3>12.Jenkins jobs pipeline---Jfrog---link</h3>
 	<p>
 		It is now
 		<%= new java.util.Date() %></p>
