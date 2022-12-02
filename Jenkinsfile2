@@ -6,7 +6,7 @@ pipeline {
       steps {
           sh 'pwd'
           sh 'whoami'
-          sh "echo ${BUILD_NUMBER}"
+          sh "echo ${BUILD_VERSION}"
           sh 'mvn deploy'
        }
      }  
@@ -14,8 +14,8 @@ pipeline {
             agent { label 'slave_jenkins' }
               steps {
                 sh 'whoami'
-                sh 'curl -u harugeri.girish@gmail.com:Raibag@74 -O https://jfrogiri.jfrog.io/artifactory/libs-release-local/com/efsavage/hello-world-war/${BUILD_NUMBER}/hello-world-war-${BUILD_NUMBER}.war'
-                sh 'sudo cp -R hello-world-war-${BUILD_NUMBER}.war /opt/apache-tomcat-10.0.27/webapps/'
+                sh 'curl -u harugeri.girish@gmail.com:Raibag@74 -O https://jfrogiri.jfrog.io/artifactory/libs-release-local/com/efsavage/hello-world-war/${BUILD_VERSION}/hello-world-war-${BUILD_VERSION}.war'
+                sh 'sudo cp -R hello-world-war-${BUILD_VERSION}.war /opt/apache-tomcat-10.0.27/webapps/'
                 sh 'sudo tomcatdown'
                 sh 'sleep 3'
                 sh 'sudo tomcatup'
