@@ -19,7 +19,8 @@
 	<h3>11.Jenkins jobs pipeline and webhook testing</h3>
 	<h3>12.Jenkins jobs pipeline and webhook testing and passwordless</h3>
 	<h3>13.Jenkins jobs pipeline between 2 servers passwordless i.e scp</h3>
-	<h3>14.Jenkins jobs pipeline---Jfrog---link</h3>
+	<h3>14.Jenkins jobs pipeline---Jfrog---link from slavedevops to slavejenkins</h3>
+	<h3>15.Jenkins jobs pipeline6th---Jfrog---link from slavedevops to new instance+slavegit</h3>
 	<p>
 		It is now
 		<%= new java.util.Date() %></p>
