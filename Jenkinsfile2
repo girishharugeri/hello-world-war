@@ -1,0 +1,26 @@
+pipeline {
+  agent none
+  stages {
+    stage ( 'my build' ) {
+      agent { label 'slave_devops' }
+      steps {
+          sh 'ls'
+          sh 'pwd'
+          sh "echo ${BUILD_NUMBER}"
+          sh 'mvn package'
+          sh 'whoami'
+          sh 'scp -R target/hello-world-war-1.0.0.war slavejenkins@172.31.12.7:/opt/apache-tomcat-10.0.27/webapps'
+       }
+     }  
+          stage ( 'my deploy' ) {
+            agent { label 'slave_jenkins' }
+              steps {
+                sh 'whoami'
+                curl -u harugeri.girish@gmail.com:Raibag@74 -O https://jfrogiri.jfrog.io/artifactory/libs-release-local/com/efsavage/hello-world-war/1.0.0/hello-world-war-1.0.0.war
+                sh 
+                sh 'sudo tomcatdown'
+                sh 'sudo tomcatup'
+      }   
+    }
+  }
+}
