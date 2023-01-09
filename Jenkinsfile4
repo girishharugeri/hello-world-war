@@ -1,0 +1,30 @@
+pipeline {
+  agent none
+  stages {
+    stage ( 'my build' ) {
+      agent { label 'slave_devops' }
+      steps {
+        sh 'pwd'
+        sh 'whoami'
+        sh "echo ${BUILD_VERSION}"
+        sh 'docker build -t tomcat/build:1.0 .'
+      }
+    }  
+    stage ( 'publish' ) {
+      steps {
+        sh "echo ${BUILD_VERSION}"
+        sh 'docker login -u girishharugeri -p docker@123'
+        sh 'docker tag tomcat/build:1.0 girishharugeri/my_tomcat:1.1'
+        sh 'docker push girishharugeri/my_tomcat:1.1'
+       }
+     } 
+     stage ( 'my deploy' ) {
+       agent { label 'slave_git' }
+       steps {
+         sh 'docker pull girishharugeri/my_tomcat:1.1'
+         sh 'docker rm -rf my_tomcat'
+         sh 'docker run -d -p 8080:8080 --name my_tomcat girishharugeri/my_tomcat:1.1'
+      }   
+    }
+  }
+}
