@@ -23,7 +23,7 @@ pipeline {
        agent { label 'slave_git' }
        steps {
          sh 'docker pull girishharugeri/my_tomcat:1.1'
-         sh 'docker rm -rf my_tomcat'
+         sh 'docker rm -f my_tomcat'
          sh 'docker run -d -p 8080:8080 --name my_tomcat girishharugeri/my_tomcat:1.1'
       }   
     }
