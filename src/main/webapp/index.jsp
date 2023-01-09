@@ -22,6 +22,7 @@
 	<h3>14.Jenkins jobs pipeline---Jfrog---link from slavedevops to slavejenkins</h3>
 	<h3>15.Jenkins jobs pipeline6th---Jfrog---link from slavedevops to new instance+slavegit</h3>
 	<h3>16.Docker<h3>
+	<h3>17.Docker and jenkins (build_virsion is 1.4)<h3>
 	<p>
 		It is now
 		<%= new java.util.Date() %></p>
