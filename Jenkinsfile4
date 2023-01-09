@@ -2,7 +2,7 @@ pipeline {
   agent none
   stages {
     stage ( 'my build' ) {
-      agent { label 'slave_devops' }
+      agent { label 'slave_devops'}
       steps {
         sh 'pwd'
         sh 'whoami'
@@ -11,6 +11,7 @@ pipeline {
       }
     }  
     stage ( 'publish' ) {
+      agent { label 'slave_devops'}
       steps {
         sh "echo ${BUILD_VERSION}"
         sh 'docker login -u girishharugeri -p docker@123'
