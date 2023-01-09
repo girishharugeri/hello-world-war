@@ -7,7 +7,7 @@ pipeline {
         sh 'pwd'
         sh 'whoami'
         sh "echo ${BUILD_VERSION}"
-        sh 'docker build -t tomcat/build:1.0 .'
+        sh 'docker build -t tomcat/build:${BUILD_VERSION} .'
       }
     }  
     stage ( 'publish' ) {
@@ -15,16 +15,16 @@ pipeline {
       steps {
         sh "echo ${BUILD_VERSION}"
         sh 'docker login -u girishharugeri -p docker@123'
-        sh 'docker tag tomcat/build:1.0 girishharugeri/my_tomcat:1.1'
-        sh 'docker push girishharugeri/my_tomcat:1.1'
+        sh 'docker tag tomcat/build:${BUILD_VERSION} girishharugeri/my_tomcat:${BUILD_VERSION}'
+        sh 'docker push girishharugeri/my_tomcat:${BUILD_VERSION}'
        }
      } 
      stage ( 'my deploy' ) {
        agent { label 'slave_git' }
        steps {
-         sh 'docker pull girishharugeri/my_tomcat:1.1'
+         sh 'docker pull girishharugeri/my_tomcat:${BUILD_VERSION}'
          sh 'docker rm -f my_tomcat'
-         sh 'docker run -d -p 8080:8080 --name my_tomcat girishharugeri/my_tomcat:1.1'
+         sh 'docker run -d -p 8080:8080 --name my_tomcat girishharugeri/my_tomcat:${BUILD_VERSION}'
       }   
     }
   }
