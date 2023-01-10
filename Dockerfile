@@ -6,9 +6,6 @@ WORKDIR ${MYPATH}
 COPY . .
 RUN mvn clean package
 
-FROM ubuntu:latest as ubuntu
-RUN echo "stage testing"
-
 FROM tomcat:9.0
 ARG MYPATH=/my-maven-dir
 ARG BUILD_VERSION=1.0.1
