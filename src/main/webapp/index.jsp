@@ -25,6 +25,7 @@
 	<h3>17.Docker and jenkins (build_virsion is 1.3)<h3>
 	<h3>18.Docker and jenkins (hello-world-war build_virsion is 1.4)<h3>
 	<h3>19.aws load balancer (hello-world-war build_virsion is 1.6)<h3>
+	<h3>20.sonarqube (hello-world-war build_virsion is 1.7)<h3>
 	<p>
 		It is now
 		<%= new java.util.Date() %></p>
