@@ -2,7 +2,7 @@ pipeline {
     agent none
     stages {
           stage ( 'my build' ) {
-          agent { label 'slave_devops'}
+          agent { label 'jenkin_master'}
                 steps {
                     sh 'pwd'
                     sh 'whoami'
@@ -12,7 +12,7 @@ pipeline {
                 }
           }  
           stage ( 'publish' ) {
-          agent { label 'slave_devops'}
+          agent { label 'jenkin_master'}
                 steps {
                     sh "echo ${BUILD_VERSION}"
                       withCredentials([usernamePassword(credentialsId: 'Docker_hub', passwordVariable: 'Docker_hubPassword', usernameVariable: 'Docker_hubUser')]) {
@@ -25,7 +25,7 @@ pipeline {
                 }
           } 
           stage ( 'my deploy' ) {
-          agent { label 'slave_git' }
+          agent { label 'k8s_master' }
                 steps {
                     sh 'helm repo add helm https://girishha.jfrog.io/artifactory/api/helm/helm --username harugeri.girish@gmail.com --password girishha@Jfrog7'
                     sh 'helm repo update'
