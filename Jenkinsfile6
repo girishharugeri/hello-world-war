@@ -1,0 +1,33 @@
+pipeline {
+    agent none
+    stages {
+          stage ( 'my build' ) {
+          agent { label 'slave_devops'}
+                steps {
+                    sh 'pwd'
+                    sh 'whoami'
+                    sh "echo ${BUILD_VERSION}"
+                    sh 'docker build -t tomcat/build:${BUILD_VERSION} --build-arg BUILD_VERSION=${BUILD_VERSION} .'
+                }
+          }  
+          stage ( 'publish' ) {
+          agent { label 'slave_devops'}
+                steps {
+                    sh "echo ${BUILD_VERSION}"
+                      withCredentials([usernamePassword(credentialsId: 'Docker_hub', passwordVariable: 'Docker_hubPassword', usernameVariable: 'Docker_hubUser')]) {
+                      sh "docker login -u ${env.Docker_hubUser} -p ${env.Docker_hubPassword}"
+                      sh 'docker tag tomcat/build:${BUILD_VERSION} girishharugeri/my_tomcat:${BUILD_VERSION}'
+                      sh 'docker push girishharugeri/my_tomcat:${BUILD_VERSION}'
+                      }
+                }
+          } 
+          stage ( 'my deploy' ) {
+          agent { label 'slave_git' }
+                steps {
+                    sh 'docker pull girishharugeri/my_tomcat:${BUILD_VERSION}'
+                    sh 'docker rm -f my_tomcat'
+                    sh 'docker run -d -p 8080:8080 --name my_tomcat girishharugeri/my_tomcat:${BUILD_VERSION}'
+                }   
+          }
+    }
+}
