@@ -1,4 +1,4 @@
-FROM maven:3.8.2-openjdk-8 as maven_build_stage
+FROM maven:3.6.3-openjdk-11.0.17 as maven_build_stage
 ARG MYPATH=/my-maven-dir
 ARG BUILD_VERSION=1.0.1
 ENV BUILD_VERSION=${BUILD_VERSION}
