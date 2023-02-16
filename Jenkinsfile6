@@ -8,6 +8,7 @@ pipeline {
                     sh 'whoami'
                     sh "echo ${BUILD_VERSION}"
                     sh 'docker build -t tomcat/build:${BUILD_VERSION} --build-arg BUILD_VERSION=${BUILD_VERSION} .'
+                    sh 'helm package ./helm/tomcat-helm --version=${BUILD_VERSION}'
                 }
           }  
           stage ( 'publish' ) {
@@ -18,15 +19,18 @@ pipeline {
                       sh "docker login -u ${env.Docker_hubUser} -p ${env.Docker_hubPassword}"
                       sh 'docker tag tomcat/build:${BUILD_VERSION} girishharugeri/my_tomcat:${BUILD_VERSION}'
                       sh 'docker push girishharugeri/my_tomcat:${BUILD_VERSION}'
+                      
+                    sh 'curl -uharugeri.girish@gmail.com:girishha@Jfrog7 -T tomcat-helm-${BUILD_VERSION}.tgz \"https://girishha.jfrog.io/artifactory/helm/tomcat-helm-${BUILD_VERSION}.tgz\"'
                       }
                 }
           } 
           stage ( 'my deploy' ) {
           agent { label 'slave_git' }
                 steps {
-                    sh 'docker pull girishharugeri/my_tomcat:${BUILD_VERSION}'
-                    sh 'docker rm -f my_tomcat'
-                    sh 'docker run -d -p 8080:8080 --name my_tomcat girishharugeri/my_tomcat:${BUILD_VERSION}'
+                    sh 'helm repo add helm https://girishha.jfrog.io/artifactory/api/helm/helm --username harugeri.girish@gmail.com --password girishha@Jfrog7'
+                    sh 'helm repo update'
+                    sh 'helm repo list'
+                    sh 'help upgrade --install mytomcat helm/tomcat-helm --version=${BUILD_VERSION} --set selector_matchlabels=tomcat --set deployment_name=tomcat-deployment --set replicas=2 --set registry_name=girishharugeri --set repository_name=my_tomcat --set tag=${BUILD_VERSION} --set targetport=8080 --set port=8080'
                 }   
           }
     }
