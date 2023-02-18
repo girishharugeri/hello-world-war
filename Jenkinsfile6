@@ -30,7 +30,7 @@ pipeline {
                     sh 'helm repo add helm https://girishha.jfrog.io/artifactory/api/helm/helm --username harugeri.girish@gmail.com --password girishha@Jfrog7'
                     sh 'helm repo update'
                     sh 'helm repo list'
-                    sh 'helm upgrade --install mytomcat helm/tomcat-helm --version=${BUILD_VERSION} --set selector_matchlabels=tomcat --set deployment_name=tomcat-deployment --set replicas=2 --set registry_name=girishharugeri --set repository_name=my_tomcat --set tag=${BUILD_VERSION} --set targetport=8080 --set port=8080'
+                    sh 'helm upgrade --install mytomcat helm/tomcat-helm --version=${BUILD_VERSION} --set selector_label=tomcat --set deployment_name=tomcat-deployment --set replicas=2 --set registry_name=girishharugeri --set repository_name=my_tomcat --set tag=${BUILD_VERSION} --set targetport=8080 --set port=8080'
                 }   
           }
     }
